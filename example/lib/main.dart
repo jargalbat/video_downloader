@@ -33,13 +33,25 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Center(
-          child: Text(_version ?? ''),
+        body: Column(
+          children: [
+            Center(
+              child: Text(_version ?? ''),
+            ),
+          ],
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () async {},
+          onPressed: () async {
+            // _insertPart();
+          },
         ),
       ),
     );
+  }
+
+  void _insertPart() async {
+    await VideoDownloader.insertPart();
+    var list = await VideoDownloader.getAllParts();
+    debugPrint('done');
   }
 }
